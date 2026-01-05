@@ -1,0 +1,135 @@
+.orders-page {
+  background-color: #f8fafc;
+  min-height: 100vh;
+  padding: 30px 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.orders-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #0f172a;
+}
+
+/* LOADING / EMPTY */
+.orders-loading,
+.no-orders {
+  padding: 40px;
+  text-align: center;
+  color: #64748b;
+  font-size: 16px;
+}
+
+/* ORDER CARD */
+.order-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* HEADER */
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.order-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #0f172a;
+}
+
+.order-date {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* STATUS */
+.order-status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.order-status.pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.order-status.confirmed {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.order-status.shipped {
+  background-color: #e0f2fe;
+  color: #075985;
+}
+
+.order-status.delivered {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.order-status.cancelled {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* SUMMARY */
+.order-summary {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+/* ITEMS */
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.order-item {
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr 0.5fr;
+  font-size: 14px;
+  color: #334155;
+}
+
+.item-name {
+  font-weight: 500;
+}
+
+.item-price {
+  text-align: right;
+  font-weight: 600;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .orders-page {
+    padding: 20px;
+  }
+
+  .order-item {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .item-price {
+    text-align: left;
+  }
+}

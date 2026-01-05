@@ -1,0 +1,79 @@
+.price-history-page {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+/* CARD */
+.price-history-card {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 700px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* TITLE */
+.price-history-card h2 {
+  font-size: 26px;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+/* STATUS */
+.status-text {
+  text-align: center;
+  font-size: 15px;
+  color: #64748b;
+  margin-top: 30px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f1f5f9;
+}
+
+th {
+  text-align: left;
+  padding: 12px;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+td {
+  padding: 12px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 14px;
+  color: #334155;
+}
+
+.price {
+  font-weight: 600;
+  color: #1e40af;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .price-history-card {
+    padding: 20px;
+  }
+
+  th, td {
+    font-size: 13px;
+  }
+}

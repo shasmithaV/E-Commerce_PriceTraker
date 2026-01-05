@@ -1,0 +1,175 @@
+/* PAGE */
+.products-page {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding-bottom: 80px; /* space for sticky bar */
+}
+
+/* HEADER */
+.products-header {
+  padding: 30px 40px 10px;
+}
+
+.products-header h1 {
+  font-size: 32px;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.products-header p {
+  font-size: 15px;
+  color: #64748b;
+}
+
+/* GRID */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  padding: 30px 40px;
+}
+
+/* LOADING / EMPTY */
+.loading-text {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 16px;
+  color: #64748b;
+}
+
+/* STICKY COMPARE BAR */
+.compare-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background-color: #0f172a;
+  color: #ffffff;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 30px;
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.compare-bar span {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.compare-bar button {
+  background-color: #1e40af;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.compare-bar button:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .products-header {
+    padding: 20px;
+  }
+
+  .products-grid {
+    padding: 20px;
+  }
+
+  .compare-bar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+
+
+/* SEARCH */
+.product-search {
+  position: relative;
+  max-width: 420px;
+  margin-top: 12px;
+}
+
+.product-search input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+}
+
+.product-search input:focus {
+  outline: none;
+  border-color: #1e40af;
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.15);
+}
+
+/* DROPDOWN */
+.search-suggestions {
+  position: absolute;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  margin-top: 6px;
+  z-index: 10;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+.suggestion-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.suggestion-item:hover {
+  background-color: #f1f5f9;
+}
+
+/* FLOATING COMPARE BUTTON */
+.compare-float-btn {
+  position: fixed;
+  top: 90px; /* below navbar */
+  right: 32px;
+
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(30, 64, 175, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 200;
+}
+
+.compare-float-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(30, 64, 175, 0.45);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .compare-float-btn {
+    top: auto;
+    bottom: 24px;
+    right: 20px;
+    padding: 12px 18px;
+  }
+}

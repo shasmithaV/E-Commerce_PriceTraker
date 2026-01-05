@@ -1,0 +1,103 @@
+.compare-page {
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.compare-content {
+  padding: 30px 40px;
+}
+
+/* TITLE */
+.compare-title {
+  text-align: center;
+  font-size: 28px;
+  color: #0f172a;
+  margin-bottom: 30px;
+}
+
+/* WARNING */
+.compare-warning {
+  padding: 40px;
+  text-align: center;
+  color: #64748b;
+  font-size: 16px;
+}
+
+/* CARDS */
+.compare-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.compare-card {
+  background-color: #ffffff;
+  width: 260px;
+  padding: 20px;
+  border-radius: 12px;
+  border-top: 4px solid #1e40af;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.compare-card h3 {
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+
+.compare-card p {
+  font-size: 14px;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+/* CHART */
+.compare-chart {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.compare-chart h3 {
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+/* BACK BUTTON */
+.compare-back {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.compare-back button {
+  padding: 10px 26px;
+  background-color: #1e40af;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.compare-back button:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .compare-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .compare-content {
+    padding: 20px;
+  }
+}
