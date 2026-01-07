@@ -141,3 +141,18 @@
     gap: 18px;
   }
 }
+
+.logout-btn {
+  background-color: #e53935;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.logout-btn:hover {
+  background-color: #c62828;
+}

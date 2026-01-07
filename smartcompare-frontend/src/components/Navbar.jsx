@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 
 function Navbar() {
@@ -12,6 +11,16 @@ function Navbar() {
     if (name) setUsername(name);
   }, []);
 
+  const handleLogout = () => {
+    // 🔥 clear auth data
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("username");
+
+    // 🔁 redirect to login
+    navigate("/");
+  };
+
   const categories = [
     "Makeup", "Skin", "Hair", "Appliances", "Bath & Body",
     "Natural", "Mom & Baby", "Health & Wellness",
@@ -20,42 +29,49 @@ function Navbar() {
 
   return (
     <header className="user-navbar">
-  {/* TOP BAR */}
-  <div className="user-navbar-top">
-    {/* LEFT */}
-    <div className="user-brand" onClick={() => navigate("/products")}>
-      ShopEase
-    </div>
-    
+      {/* TOP BAR */}
+      <div className="user-navbar-top">
+        {/* LEFT */}
+        <div
+          className="user-brand"
+          onClick={() => navigate("/products")}
+        >
+          ShopEase
+        </div>
 
-    {/* RIGHT */}
-    <div className="user-actions">
-      <span className="user-greeting">
-        Hi, <strong>{username || "User"}</strong>
-      </span>
+        {/* RIGHT */}
+        <div className="user-actions">
+          <span className="user-greeting">
+            Hi, <strong>{username || "User"}</strong>
+          </span>
 
-      <button
-        className="cart-btn"
-        onClick={() => navigate("/cart")}
-        aria-label="Cart"
-      >
-        🛒
-      </button>
-    </div>
-    
+          <button
+            className="cart-btn"
+            onClick={() => navigate("/cart")}
+            aria-label="Cart"
+          >
+            🛒
+          </button>
 
-  </div>
+          {/* ✅ LOGOUT BUTTON */}
+          <button
+            className="logout-btn"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </div>
+      </div>
 
-  {/* CATEGORY BAR */}
-  <nav className="user-categories">
-    {categories.map(cat => (
-      <span key={cat} className="category-item">
-        {cat}
-      </span>
-    ))}
-  </nav>
-</header>
-
+      {/* CATEGORY BAR */}
+      <nav className="user-categories">
+        {categories.map(cat => (
+          <span key={cat} className="category-item">
+            {cat}
+          </span>
+        ))}
+      </nav>
+    </header>
   );
 }
 

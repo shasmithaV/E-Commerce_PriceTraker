@@ -1,8 +1,8 @@
 import { useState } from "react";
-import axios from "../api/axios";
+import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
-import ShopEase from '../assets/ShopEase.jpeg';
-import {jwtDecode} from "jwt-decode";
+import ShopEase from "../assets/ShopEase.jpeg";
+import { jwtDecode } from "jwt-decode";
 import "../styles/Login.css";
 
 function Login() {
@@ -11,71 +11,88 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError("");
+  const handleLogin = async () => {
+  setError("");
+  setLoading(true);
 
-    try {
-      const res = await axios.post("/auth/login", { email, password });
+  try {
+    const res = await api.post("/auth/login", { email, password });
 
-       const token = res.data.accessToken;
-       const decoded = jwtDecode(token);
-       console.log("DECODED JWT:", decoded);
+    console.log("LOGIN RESPONSE:", res.data); // 🔍 debug
 
-      localStorage.setItem("token", token);
-      localStorage.setItem("role", decoded.role);       // 🔥 IMPORTANT
-      localStorage.setItem("username", decoded.sub); // fallback
+    const token = res.data.accessToken; // ✅ FIXED
+    const decoded = jwtDecode(token);
 
-      // ✅ REDIRECT BASED ON ROLE
-      if (decoded.role === "ROLE_ADMIN") {
-        navigate("/admin");
-      } else {
-        navigate("/products");
-      }
+    localStorage.setItem("token", token);
+    localStorage.setItem("role", decoded.role);
+    localStorage.setItem("username", decoded.sub);
 
-    } catch (err) {
-      setError("Invalid email or password");
+    if (decoded.role === "ROLE_ADMIN") {
+      navigate("/admin");
+    } else {
+      navigate("/products");
     }
-  };
+
+  } catch (err) {
+    console.error("LOGIN ERROR:", err);
+    setError("Invalid email or password");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
 
   return (
     <div className="login-container">
-      {/* LEFT SIDE */}
+      {/* LEFT SECTION */}
       <div className="login-left">
         <img src={ShopEase} alt="ShopEase" />
         <h1>Welcome to ShopEase</h1>
         <p>Your one-stop online shopping destination.</p>
       </div>
 
-      {/* RIGHT SIDE */}
+      {/* RIGHT SECTION */}
       <div className="login-right">
         <div className="login-card">
           <h2>Sign In</h2>
           <p className="subtitle">Enter your account details</p>
 
-          <form onSubmit={handleLogin}>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+          {/* EMAIL */}
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+          {/* PASSWORD */}
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-            <button type="submit">Login</button>
+          {/* LOGIN BUTTON */}
+          <button
+  type="button"
+  onClick={(e) => {
+    e.preventDefault();     // ⛔ stop form submit
+    e.stopPropagation();    // ⛔ stop bubbling to parent form
+    handleLogin();          // ✅ run login logic
+  }}
+>
+  Login
+</button>
 
-            {error && <p className="error">{error}</p>}
-          </form>
 
+          {/* ERROR MESSAGE */}
+          {error && <p className="error">{error}</p>}
+
+          {/* REGISTER */}
           <p className="signup-text">
             Don&apos;t have an account?
             <span onClick={() => navigate("/register")}> Sign Up</span>
