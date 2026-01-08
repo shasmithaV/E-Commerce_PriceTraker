@@ -55,12 +55,14 @@ public class SecurityConfig {
 
             // ✅ Authorization
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/products/**").hasAnyRole("USER","ADMIN") 
-                 .requestMatchers("/api/cart/**").hasRole("USER")
-                .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-            )
+    .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll() // ✅ ADD THIS
+    .requestMatchers("/api/auth/**").permitAll()
+    .requestMatchers("/api/products/**").hasAnyRole("USER","ADMIN")
+    .requestMatchers("/api/cart/**").hasRole("USER")
+    .requestMatchers("/api/admin/**").hasRole("ADMIN")
+    .anyRequest().authenticated()
+)
+
 
             // ✅ JWT Filter
             .addFilterBefore(
@@ -73,16 +75,22 @@ public class SecurityConfig {
 
     // ✅ CORS CONFIG FOR SECURITY
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+public CorsConfigurationSource corsConfigurationSource() {
 
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173"));
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);
+    CorsConfiguration config = new CorsConfiguration();
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
+    config.setAllowedOrigins(List.of(
+        "http://localhost:5173",
+        "https://e-commerce-price-traker-r8fuyv60g-shasmitha-vs-projects.vercel.app"
+    ));
+
+    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    config.setAllowedHeaders(List.of("*"));
+    config.setAllowCredentials(true);
+
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", config);
+    return source;
     }
+
 }

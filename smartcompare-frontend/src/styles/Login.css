@@ -47,13 +47,18 @@
 }
 
 /* CARD */
-.login-card {
-  background-color: #ffffff;
-  padding: 40px 30px;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+.login-card button {
+  display: block;              /* 👈 forces next line */
+  width: 100%;                 /* 👈 full width (clean look) */
+  margin-top: 10px;            /* 👈 spacing from input */
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
 }
 
 .login-card h2 {
