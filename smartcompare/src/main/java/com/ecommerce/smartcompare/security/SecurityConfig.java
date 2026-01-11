@@ -2,6 +2,7 @@ package com.ecommerce.smartcompare.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -55,13 +56,14 @@ public class SecurityConfig {
 
             // ✅ Authorization
             .authorizeHttpRequests(auth -> auth
-    .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll() // ✅ ADD THIS
+    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
     .requestMatchers("/api/auth/**").permitAll()
     .requestMatchers("/api/products/**").hasAnyRole("USER","ADMIN")
     .requestMatchers("/api/cart/**").hasRole("USER")
     .requestMatchers("/api/admin/**").hasRole("ADMIN")
     .anyRequest().authenticated()
 )
+
 
 
             // ✅ JWT Filter
@@ -79,18 +81,25 @@ public CorsConfigurationSource corsConfigurationSource() {
 
     CorsConfiguration config = new CorsConfiguration();
 
-    config.setAllowedOrigins(List.of(
+    // ✅ ALLOW ALL VERCEL DOMAINS + LOCALHOST
+    config.setAllowedOriginPatterns(List.of(
         "http://localhost:5173",
-        "https://e-commerce-price-traker-r8fuyv60g-shasmitha-vs-projects.vercel.app"
+        "https://*.vercel.app"
     ));
 
-    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    config.setAllowedMethods(List.of(
+        "GET", "POST", "PUT", "DELETE", "OPTIONS"
+    ));
+
     config.setAllowedHeaders(List.of("*"));
     config.setAllowCredentials(true);
 
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    UrlBasedCorsConfigurationSource source =
+            new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", config);
     return source;
-    }
+}
+
+
 
 }
